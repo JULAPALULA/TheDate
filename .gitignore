@@ -1,3 +1,33 @@
-# Godot 4+ specific ignores
+# Godot 4+ specific
 .godot/
+.import/
+
+# Export configurations (can be regenerated)
+export.cfg
+export_presets.cfg
+
+# Android / iOS builds
 /android/
+ /ios/
+
+# Temporary or OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Compiled binaries and packages
+*.exe
+*.dll
+*.so
+*.dylib
+*.pck
+*.zip
+*.tar
+*.apk
+*.aab
+
+# User-specific editor files (if any)
+*.tmp
+*.log
+*.cfg
+
