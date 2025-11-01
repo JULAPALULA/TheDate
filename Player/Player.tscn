@@ -33,3 +33,8 @@ script = ExtResource("3_ddoul")
 
 [node name="Walk" type="Node" parent="StateMachine"]
 script = ExtResource("4_8g4oa")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Estado"

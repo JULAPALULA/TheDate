@@ -1,7 +1,9 @@
 class_name Player
 extends CharacterBody3D
 
-@onready var camera_3d = $Camera3D
+
+
+#****** CÁMARA ******#
 var canMoveAndRotate := true
 var mouse_sens = 0.15
 var contoller_sensitivity = 0.1
@@ -13,6 +15,13 @@ var direction := Vector3()
 var speed := 5
 var accel = 5
 
+@onready var camera_3d = $Camera3D
+
+var camBobSpeed := 7 # 0 | 10
+var camBobUpDown := .75 # 0.5 | 1
+var _delta = 0
+@onready var origCamPos : Vector3 = camera_3d.position
+
 func _ready() -> void:
 	$MeshInstance3D.hide()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -22,10 +31,12 @@ func _input(event: InputEvent) -> void:
 		rotate_camera(event)
 
 func _process(delta: float) -> void:
+	$Label.text = $StateMachine.get_state()
 	process_camera_joystick()
 	process_input(delta)
 
 func process_input(delta) -> Vector3:
+	_delta += delta
 	direction = Vector3.ZERO
 	var h_rot = global_transform.basis.get_euler().y
 	
@@ -33,7 +44,6 @@ func process_input(delta) -> Vector3:
 	var side_input = Input.get_action_strength("move_right")-Input.get_action_strength("move_left")
 	
 	direction=Vector3(side_input,0,frwd_input).rotated(Vector3.UP, h_rot).normalized()
-	print("Player direction:", direction)
 	return direction
 
 func rotate_camera(event):
